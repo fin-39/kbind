@@ -8,7 +8,12 @@ class KeyBinder {
     private static state: KeyBinder.State = {
         modifierKeys: [],
         listeners: {},
-        layers: {},
+        layers: {
+            default: {
+                priority: 0,
+                propagate: true,
+            },
+        },
     };
 
     public static get isControlPressed() {
@@ -61,6 +66,18 @@ class KeyBinder {
         if (isUndefined(layerId)) return undefined;
 
         return KeyBinder.state.layers[layerId].priority;
+    }
+
+    public static mount() {
+        window.addEventListener('blur', KeyBinder.blurHandler);
+        window.addEventListener('keydown', KeyBinder.keyDownHandler);
+        window.addEventListener('keyup', KeyBinder.keyUpHandler);
+    }
+
+    public static unmount() {
+        window.removeEventListener('blur', KeyBinder.blurHandler);
+        window.removeEventListener('keydown', KeyBinder.keyDownHandler);
+        window.removeEventListener('keyup', KeyBinder.keyUpHandler);
     }
 
     public static blurHandler() {
@@ -141,7 +158,11 @@ class KeyBinder {
         id: KeyBinder.State.Listener.Id,
         listener: KeyBinder.State.Listener,
     ) {
-        KeyBinder.state.listeners[id] = listener;
+        KeyBinder.state.listeners[id] = {
+            layerId: listener.layerId || 'default',
+
+            ...listener,
+        };
     }
 
     public static unregisterListener(id: KeyBinder.State.Listener.Id) {
@@ -336,7 +357,7 @@ namespace KeyBinder {
         }
 
         export interface Listener {
-            layerId: Layer.Id;
+            layerId?: Layer.Id;
 
             priority: number;
             bind?: KeyBind | undefined | null;
