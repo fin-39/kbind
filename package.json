@@ -1,6 +1,6 @@
 {
   "name": "kbind",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Library for working with keybinds",
   "type": "module",
   "main": "dist/index.js",
