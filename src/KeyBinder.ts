@@ -168,7 +168,7 @@ class KeyBinder {
         listener: KeyBinder.State.Listener,
     ) {
         KeyBinder.state.listeners[id] = {
-            layerId: listener.layerId || 'default',
+            layerId: listener.layerId ?? 'default',
 
             ...listener,
         };
@@ -364,7 +364,7 @@ namespace KeyBinder {
             layerId?: Layer.Id;
 
             priority: number;
-            bind?: KeyBind | undefined | null;
+            bind?: KeyBind | null;
             handler?: Handler<KeyboardEvent>;
             options?: Listener.Options;
         }
