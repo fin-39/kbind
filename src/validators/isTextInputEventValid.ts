@@ -1,4 +1,5 @@
-import { Key } from '../data';
+import Key from '@/enums/Key';
+import isEventTargetInput from '@/utils/isEventTargetInput';
 
 const shiftableKeys = [
     Key.Backquote,
@@ -125,7 +126,11 @@ const shiftValidKeys = [
 
 const ctrlShiftValidKeys = [Key.ArrowLeft, Key.ArrowRight, Key.Home, Key.End];
 
-function isValidTextInputEvent(event: KeyboardEvent) {
+function isTextInputEventValid(event: KeyboardEvent) {
+    if (!isEventTargetInput(event, 'text')) {
+        return true;
+    }
+
     const { ctrlKey, shiftKey, altKey, code } = event;
 
     // No modifier keys
@@ -162,4 +167,4 @@ function isValidTextInputEvent(event: KeyboardEvent) {
     return true;
 }
 
-export default isValidTextInputEvent;
+export default isTextInputEventValid;
