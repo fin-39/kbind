@@ -397,7 +397,7 @@ class KeyBinder {
 
         let listenerId: KeyBinder.State.Listener.Id | undefined;
 
-        layerIds.find((currentLayerId) => {
+        const found = layerIds.some((currentLayerId) => {
             const currentLayer = KeyBinder.state.layers[currentLayerId];
 
             const currentListenerId = listenerIds.find((listenerId) => {
@@ -428,14 +428,15 @@ class KeyBinder {
             listenerId = currentListenerId;
 
             if (!currentListenerId && currentLayer.propagate) {
-                // eslint-disable-next-line no-continue
                 return false;
             }
 
             return true;
         });
 
-        return listenerId;
+        if (found) return listenerId;
+
+        return undefined;
     }
 
     private static emit(event: KeyboardEvent) {
