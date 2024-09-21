@@ -11,6 +11,9 @@ export default defineConfig({
             fileName: 'index',
         },
         minify: 'esbuild',
+        rollupOptions: {
+            external: ['lodash'],
+        },
     },
     resolve: { alias: { '@': resolve('src/') } },
     plugins: [

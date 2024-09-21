@@ -1,6 +1,5 @@
 import Arrayable from '@/types/Arrayable';
-import { isUndefined } from 'lodash';
-import isArray from 'lodash/isArray';
+import { isUndefined, isArray } from 'lodash';
 
 function isEventTargetInput(
     event: KeyboardEvent,

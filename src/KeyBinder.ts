@@ -1,6 +1,4 @@
-import isNil from 'lodash/isNil';
-import isUndefined from 'lodash/isUndefined';
-import sortedIndex from 'lodash/sortedIndex';
+import { isNil, isUndefined, sortedIndex } from 'lodash';
 import AnyOrderArray from '@/types/AnyOrderArray';
 import Handler from '@/types/Handler';
 import { keyCodeToKeyName, modifierKeys, primaryKeys } from '@/data';
