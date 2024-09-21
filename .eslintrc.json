@@ -24,7 +24,7 @@
     },
     "parser": "@typescript-eslint/parser",
     "ignorePatterns": [
-        "**/build/**/*"
+        "**/dist/**/*"
     ],
     "rules": {
         "prettier/prettier": [
