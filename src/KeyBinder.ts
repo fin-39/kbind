@@ -262,8 +262,7 @@ class KeyBinder {
 
         let listenerId: KeyBinder.State.Listener.Id | undefined;
 
-        for (let index = 0; index < layerIds.length; index += 1) {
-            const currentLayerId = layerIds[index];
+        layerIds.find((currentLayerId) => {
             const currentLayer = KeyBinder.state.layers[currentLayerId];
 
             const currentListenerId = listenerIds.find((listenerId) => {
@@ -295,11 +294,11 @@ class KeyBinder {
 
             if (!currentListenerId && currentLayer.propagate) {
                 // eslint-disable-next-line no-continue
-                continue;
+                return false;
             }
 
-            break;
-        }
+            return true;
+        });
 
         return listenerId;
     }
