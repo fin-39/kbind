@@ -1,3 +1,10 @@
+/**
+ * Enum representing various keyboard key codes.
+ *
+ * This enum provides a comprehensive list of keyboard key codes, including
+ * alphanumeric keys, function keys, control keys, and special characters.
+ * Each key is represented by a string that corresponds to its key code.
+ */
 enum Key {
     Alt = 'Alt',
     AltLeft = 'AltLeft',
@@ -121,6 +128,10 @@ enum Key {
 }
 
 namespace Key {
+    /**
+     * A type representing the values of the `Key` enum.
+     * It allows to use the enum values as string literals.
+     */
     export type Values = `${Key}`;
 }
 

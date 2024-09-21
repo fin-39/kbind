@@ -126,6 +126,15 @@ const shiftValidKeys = [
 
 const ctrlShiftValidKeys = [Key.ArrowLeft, Key.ArrowRight, Key.Home, Key.End];
 
+/**
+ * Validates if a keyboard event is valid for a text input.
+ *
+ * This function checks the event target to ensure it is an input element of type 'text'.
+ * And then it checks if the pressed keys don't overlap with standard hotkeys.
+ *
+ * @param event - The keyboard event to validate.
+ * @returns `true` if the event is valid, `false` otherwise.
+ */
 function isTextInputEventValid(event: KeyboardEvent) {
     if (!isEventTargetInput(event, 'text')) {
         return true;
